@@ -13,3 +13,4 @@ class Doctor(models.Model):
     phone = models.IntegerField(max_length=20)
     email = models.CharField(max_length=100)
     office = models.CharField(max_length=100)
+    

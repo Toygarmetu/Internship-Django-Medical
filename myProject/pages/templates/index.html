@@ -62,7 +62,7 @@
               <li class="nav-item active">
                 <a class="nav-link" href="{% static 'index.html' %}">Home <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="{% static 'about.html' %}"> About</a>
               </li>
               <li class="nav-item">
@@ -70,10 +70,17 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% static 'doctors.html' %}">Doctors</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link" href="{% static 'contact.html' %}">Contact Us</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="accounts/register">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="accounts/login">Login</a>
+              </li>
+
               <form class="form-inline">
                 <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
                   <i class="fa fa-search" aria-hidden="true"></i>
@@ -334,8 +341,8 @@
       {% endfor %}
     </div>
     <div class="btn-box">
-      <a href="">
-        View All
+      <a href="http://127.0.0.1:8000/doctors">
+        View All 
       </a>
     </div>
   </div>
@@ -549,7 +556,7 @@
               Links
             </h4>
             <div class="footer_links">
-              <a class="active" href="{% static 'index.html' %}">
+              <a class="active" href="index.html">
                 Home
               </a>
               <a class="" href="{% static 'about.html' %}">
