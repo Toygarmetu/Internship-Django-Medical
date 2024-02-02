@@ -1,0 +1,41 @@
+{% extends "base.html" %}  <!-- Assuming you have a base template -->
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/appointment.css' %}">
+<div class="appointment-form-container">
+    <form id="appointment-form" method="post" action="">
+        {% csrf_token %}
+        <label for="doctor">Doctor:</label>
+        <select name="doctor" id="doctor" required>
+            <!-- Dynamically load doctors -->
+            {% for doctor in doctors %}
+            <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="patient">Patient:</label>
+        <select name="patient" id="patient" required>
+            <!-- Dynamically load patients -->
+            {% for patient in patients %}
+            <option value="{{ patient.id }}">{{ patient.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="status">Status:</label>
+        <select name="status" id="status" required>
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="cancelled">Cancelled</option>
+        </select>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required>
+
+        <input type="submit" value="Book Appointment">
+    </form>
+</div>
+{% endblock %}

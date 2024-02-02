@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button, .btn-register {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover, .btn-register:hover {
+    background-color: #4cae4c;
+}
+
+/* Specific styles for the register button if it's an <a> tag */
+.btn-register {
+    display: inline-block; /* Allows the use of margin and padding */
+    text-decoration: none; /* Removes underline from links */
+    text-align: center;
+    width: auto; /* Adjust width as per content */
+    margin-top: 20px; /* Extra space from the login button */
+    background-color: transparent; /* For outline style */
+    color: #5cb85c; /* Same color as the button for consistency */
+    border: 2px solid #5cb85c; /* Outline effect */
+}
+
+.btn-register:hover {
+    background-color: #f4f4f4; /* Lighter background on hover */
+    color: #4cae4c; /* Slightly darker text color for contrast */
+}
+
+.form-header {
+    text-align: center;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+}

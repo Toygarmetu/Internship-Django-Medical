@@ -905,3 +905,16 @@ a:focus {
   color: inherit;
 }
 /*# sourceMappingURL=style.css.map */
+
+.user-name {
+  font-weight: bold; /* Make the name bold */
+  color: #007bff; /* Use a color that fits your site's theme, this is just an example */
+  margin-right: 10px; /* Adds some spacing to the right of the name */
+}
+
+/* Optionally, style the surrounding <li> or <a> tag for better alignment or spacing */
+.nav-item .nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

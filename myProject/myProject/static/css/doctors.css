@@ -1,0 +1,144 @@
+/* Custom Stylesheet */
+
+body, html {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+.hero_area {
+    position: relative;
+    width: 100%;
+    background-color: #f8f9fa;
+}
+
+.hero_bg_box img {
+    width: 100%;
+    height: auto;
+}
+
+.header_section .navbar {
+    padding: 15px 0;
+}
+
+.header_section .navbar-brand span {
+    font-weight: 900;
+    color: #007bff;
+}
+
+.header_section .navbar-nav .nav-link {
+    color: #555;
+    margin-right: 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+.header_section .navbar-nav .nav-link:hover {
+    color: #007bff;
+}
+
+.header_section .nav_search-btn {
+    background: none;
+    border: none;
+    color: #007bff;
+}
+
+.doctor_section {
+    padding: 60px 0;
+}
+
+.doctor_section .heading_container {
+    margin-bottom: 45px;
+}
+
+.doctor_section .heading_container h2 {
+    font-weight: 700;
+    color: #007bff;
+    text-align: center;
+}
+
+.doctor_section .box {
+    margin-bottom: 30px;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.doctor_section .box:hover {
+    transform: translateY(-5px);
+}
+
+.doctor_section .img-box img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 5px solid #007bff;
+}
+
+.doctor_section .detail-box {
+    padding: 20px;
+}
+
+.doctor_section .detail-box h5 {
+    margin: 0;
+    padding-bottom: 10px;
+    color: #333;
+}
+
+.doctor_section .detail-box .social_box {
+    padding-top: 10px;
+}
+
+.doctor_section .detail-box .social_box a {
+    color: #007bff;
+    margin-right: 10px;
+}
+
+.footer_section {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+}
+
+.footer_section .footer_col h4 {
+    font-weight: 700;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+.footer_section .footer_col p, 
+.footer_section .footer_col a {
+    color: #555;
+    margin-bottom: 10px;
+    display: block;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer_section .footer_col a:hover {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.footer-info {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+.footer-info p, .footer-info a {
+    color: #555;
+}
+
+/* Responsive Styles */
+@media (max-width: 767px) {
+    .hero_section .hero_bg_box img {
+        height: auto;
+    }
+
+    .header_section .navbar-toggler {
+        border: none;
+    }
+
+    .header_section .navbar-toggler:focus {
+        box-shadow: none;
+    }
+}

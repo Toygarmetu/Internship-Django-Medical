@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -35,6 +36,9 @@ def register(request):
         password1 = request.POST['password1']
         password2 = request.POST['password2']
         
+        if not all([first_name, last_name, username, email, password1, password2]):
+            messages.error(request, 'Please fill all fields.')
+            return redirect('register')
     
         if password1 == password2:
             if User.objects.filter(username=username).exists():
@@ -53,3 +57,9 @@ def register(request):
         return redirect('/') 
     else:
         return render(request, 'register.html')
+    
+def logout(request):
+    auth.logout(request)
+    return redirect('/')
+
+
