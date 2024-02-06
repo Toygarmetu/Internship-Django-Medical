@@ -14,7 +14,7 @@
   <meta name="author" content="" />
   <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="">
 
-  <title>Orthoc</title>
+  <title>Medic</title>
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
@@ -42,9 +42,9 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="{% url 'index' %}">
+          <a class="navbar-brand" href="/">
             <span>
-              Orthoc
+              Medic
             </span>
           </a>
 
@@ -56,19 +56,19 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'index' %}">Home </a>
+                <a class="nav-link" href="/">Home </a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="{% url 'about' %}"> About <span class="sr-only">(current)</span> </a>
+                <a class="nav-link" href="/about/"> About <span class="sr-only">(current)</span> </a>
               </li>
               <!-- <li class="nav-item">
-                <a class="nav-link" href="{% url 'departments' %}">Departments</a>
+                <a class="nav-link" href="/departments/">Departments</a>
               </li> -->
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'doctors' %}">Doctors</a>
+                <a class="nav-link" href="/doctors/">Doctors</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                <a class="nav-link" href="/contact/">Contact Us</a>
               </li>
               <form class="form-inline">
                 <button class="btn my-2 my-sm-0 nav_search-btn" type="submit">
@@ -101,14 +101,28 @@
               </h2>
             </div>
             <p>
-              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-              in some form, by injected humour, or randomised words which don't look even slightly believable. If you
-              are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in
-              the middle of text. All
+              Welcome to Medic, a cutting-edge healthcare platform where innovation meets compassion. At Medic, we have reimagined the healthcare experience, creating a seamless ecosystem that empowers patients, supports our dedicated doctors, and prioritizes your well-being.
+
+Our Journey:
+Founded on the principles of excellence and care, Medic was born from the vision of a healthier, happier world. We have brought together a wealth of medical knowledge, the latest technology, and a commitment to patient-centric care to make this vision a reality.
+
+Our Approach:
+
+    Comprehensive Health Data Collection: We understand that healthcare starts with accurate information. That's why we've assembled a vast repository of data on patients, doctors, medicines, symptoms, and diseases. This extensive database enables us to provide the most accurate diagnoses and treatment recommendations.
+
+    Empowering Patients: We put the power of healthcare in your hands. Patients can easily create appointments based on the availability of our highly skilled medical professionals. Your health, your schedule, your choice.
+
+    Secure Medical Histories: Your medical history is invaluable. We've implemented state-of-the-art security measures to ensure that your medical records are stored safely and remain accessible whenever you need them. Your continuity of care is our priority.
+
+    Safety First: We take your health seriously. Our system meticulously tracks side-effects and potential medicine conflicts, providing you with transparent information. Your safety is our utmost concern.
+
+    Personalized Prescriptions: Our dedicated team of healthcare experts collaborates to create personalized prescriptions tailored to your unique needs. We believe in holistic well-being, and our prescriptions reflect that commitment.
+
+    Limitless Possibilities: At Medic, we're not bound by convention. We encourage creativity, innovation, and the pursuit of new possibilities in healthcare. We're constantly evolving to bring you the best in medical care.
+
+Join us on our journey to redefine healthcare. At Medic, we're more than just a hospital; we're a community that cares. Your health matters, and we're here to make sure it's the best it can be. Together, let's embrace a healthier tomorrow."
             </p>
-            <a href="">
-              Read More
-            </a>
+            
           </div>
         </div>
       </div>
@@ -179,19 +193,19 @@
               Links
             </h4>
             <div class="footer_links">
-              <a class="" href="{% url 'index' %}">
+              <a class="" href="/">
                 Home
               </a>
-              <a class="active" href="{% url 'about' %}">
+              <a class="active" href="/about/">
                 About
               </a>
-              <a class="" href="{% url 'departments' %}">
+              <a class="" href="/departments/">
                 Departments
               </a>
-              <a class="" href="{% url 'doctors' %}">
+              <a class="" href="/doctors/">
                 Doctors
               </a>
-              <a class="" href="{% url 'contact' %}">
+              <a class="" href="/contact/">
                 Contact Us
               </a>
             </div>
@@ -221,18 +235,18 @@
   </footer>
   <!-- footer section -->
 
-  <!-- jQery -->
+  <!-- jQuery -->
   <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <!-- popper js -->
+  <!-- Popper.js -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
     crossorigin="anonymous">
   </script>
-  <!-- bootstrap js -->
+  <!-- Bootstrap JavaScript -->
   <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
-  <!-- owl slider -->
+  <!-- Owl Carousel -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
   </script>
-  <!-- custom js -->
+  <!-- Custom JavaScript -->
   <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
   <!-- Google Map -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">

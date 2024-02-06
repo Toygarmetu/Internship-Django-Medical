@@ -17,6 +17,9 @@ def doctors(request):
     doctors = Doctor.objects.all()
     return render(request, 'doctors.html', {'doctors': doctors})
 
+def contact(request):
+    return render(request, 'contact.html')
+
 @login_required
 def book_appointment(request):
     if request.method == 'POST':

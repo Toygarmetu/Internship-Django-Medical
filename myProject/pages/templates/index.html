@@ -48,7 +48,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="{% static 'index.html' %}">
+          <a class="navbar-brand" href="">
             <span>
               Medic
             </span>
@@ -61,7 +61,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
               <li class="nav-item active">
-                <a class="nav-link" href="{% static 'index.html' %}">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
               </li>
               <!-- <li class="nav-item">
                 <a class="nav-link" href="{% static 'about.html' %}"> About</a>
@@ -73,7 +73,7 @@
                 <a class="nav-link" href="{% static 'doctors.html' %}">Doctors</a>
               </li> -->
               <li class="nav-item">
-                <a class="nav-link" href="{% static 'contact.html' %}">Contact Us</a>
+                <a class="nav-link" href="contact">Contact Us</a>
               </li>
 
               {% if user.is_authenticated %}
@@ -330,8 +330,7 @@ Founded on the principles of excellence and care, Medic was born from the vision
         Our Doctors
       </h2>
       <p class="col-md-10 mx-auto px-0">
-        Incilint sapiente illo quo praesentium officiis laudantium nostrum, ad adipisci cupiditate sit, quisquam aliquid. Officiis laudantium fuga ad voluptas aspernatur error fugiat quos facilis saepe quas fugit, beatae id quisquam.
-      </p>
+        Doctors can easily manage appointments, access patient records, and communicate securely with patients, all in one convenient platform.</p>
     </div>
     <div class="row">
       {% for doctor in doctors %}
@@ -437,7 +436,7 @@ Founded on the principles of excellence and care, Medic was born from the vision
                   <div class="detail-box">
                     <div class="name">
                       <h6>
-                        Alan Emerson
+                        Toygar Ateş
                       </h6>
                     </div>
                     <p>
@@ -459,7 +458,7 @@ Founded on the principles of excellence and care, Medic was born from the vision
                   <div class="detail-box">
                     <div class="name">
                       <h6>
-                        Alan Emerson
+                        Toygar Ateş
                       </h6>
                     </div>
                     <p>
@@ -571,7 +570,7 @@ Founded on the principles of excellence and care, Medic was born from the vision
               Links
             </h4>
             <div class="footer_links">
-              <a class="active" href="index.html">
+              <a class="active" href="">
                 Home
               </a>
               <a class="" href="{% static 'about.html' %}">
