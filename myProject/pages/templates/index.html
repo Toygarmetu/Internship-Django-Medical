@@ -63,6 +63,12 @@
               <li class="nav-item active">
                 <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}"> About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'doctors' %}">Doctors</a>
+              </li>
               <!-- <li class="nav-item">
                 <a class="nav-link" href="{% static 'about.html' %}"> About</a>
               </li>
@@ -165,7 +171,7 @@
                       At Medic, we are dedicated to providing exceptional healthcare services in a state-of-the-art facility, where patient well-being and comfort are at the heart of everything we do. Our hospital is recognized for its pioneering approach to medicine, compassionate care, and unwavering commitment to improving the health and well-being of the communities we serve.
                     </p>
                     <div class="btn-box">
-                      <a href="" class="btn1">
+                      <a href="/hospitals/" class="btn1">
                         Hospitals
                       </a>
                     </div>
@@ -194,7 +200,7 @@
       <div class="container ">
         <div class="heading_container heading_center">
           <h2>
-            Our Departments
+            Our Facilities
           </h2>
           <p>
             We provide you with the best medical care experience in the world, using latest software and technological equipments.
@@ -204,7 +210,9 @@
           <div class="col-md-4">
             <div class="box ">
               <div class="img-box">
-                <img src="{% static 'images/s1.png' %}" alt="">
+                <a href="{% url 'hospitals' %}">
+                  <img src="{% static 'images/s1.png' %}" alt="">
+                </a>
               </div>
               <div class="detail-box">
                 <h5>
@@ -219,7 +227,9 @@
           <div class="col-md-4">
             <div class="box ">
               <div class="img-box">
-                <img src="{% static 'images/s2.png' %}" alt="">
+                <a href="{% url 'doctors' %}">
+                  <img src="{% static 'images/s2.png' %}" alt="">
+                </a>
               </div>
               <div class="detail-box">
                 <h5>
@@ -277,11 +287,7 @@
             </div>
           </div>
         </div>
-        <div class="btn-box">
-          <a href="">
-            View All
-          </a>
-        </div>
+        
       </div>
     </div>
   </section>
@@ -330,14 +336,14 @@ Founded on the principles of excellence and care, Medic was born from the vision
         Our Doctors
       </h2>
       <p class="col-md-10 mx-auto px-0">
-        Doctors can easily manage appointments, access patient records, and communicate securely with patients, all in one convenient platform.</p>
+        Doctors can easily manage appointments with you, access patient records, and communicate securely with patients, all in one convenient platform.</p>
     </div>
     <div class="row">
       {% for doctor in doctors %}
         <div class="col-sm-6 col-lg-4 mx-auto">
           <div class="box">
             <div class="img-box">
-              <img src="{% static doctor.image.url %}" alt="{{ doctor.name }}">
+              <img src="{{ doctor.image.url }}" alt="">
             </div>
             <div class="detail-box">
               <div class="social_box">
@@ -347,7 +353,7 @@ Founded on the principles of excellence and care, Medic was born from the vision
                 {{ doctor.name }}
               </h5>
               <h6 class="">
-                Doctor - {{ doctor.specialization }}
+                 {{ doctor.specialization.all|join:", "}}
               </h6>
             </div>
           </div>
@@ -440,7 +446,7 @@ Founded on the principles of excellence and care, Medic was born from the vision
                       </h6>
                     </div>
                     <p>
-                      For it follows that we hate to assume that pleasures are duties to us. I will explain the great, asperant of ours, the distinction of the praisers left the chosen because indeed the discovery of a great body of them will be followed by the whole of the corrupt! Corrupt, are they nothing? He was born.
+                      TechNarts Winter Internship is a 2-month long program for students who are looking to gain real-world experience in the fields of Web Development, especially in Django Framework. The program is designed to help students gain practical experience by working on live projects.
                     </p>
                     <i class="fa fa-quote-left" aria-hidden="true"></i>
                   </div>
@@ -462,7 +468,7 @@ Founded on the principles of excellence and care, Medic was born from the vision
                       </h6>
                     </div>
                     <p>
-                      For it follows that we hate to assume that pleasures are duties to us. I will explain the great, asperant of ours, the distinction of the praisers left the chosen because indeed the discovery of a great body of them will be followed by the whole of the corrupt! Corrupt, are they nothing? He was born.
+                      TechNarts Winter Internship is a 2-month long program for students who are looking to gain real-world experience in the fields of Web Development, especially in Django Framework. The program is designed to help students gain practical experience by working on live projects.
                     </p>
                     <i class="fa fa-quote-left" aria-hidden="true"></i>
                   </div>
@@ -480,11 +486,11 @@ Founded on the principles of excellence and care, Medic was born from the vision
                   <div class="detail-box">
                     <div class="name">
                       <h6>
-                        Alan Emerson
+                        Toygar Ateş
                       </h6>
                     </div>
                     <p>
-                      Enim consequatur odio assumenda voluptas voluptatibus esse nobis officia. Magnam, aspernatur nostrum explicabo, distinctio laudantium delectus deserunt quia quidem magni corporis earum inventore totam consectetur corrupti! Corrupti, nihil sunt? Natus.
+                      TechNarts Winter Internship is a 2-month long program for students who are looking to gain real-world experience in the fields of Web Development, especially in Django Framework. The program is designed to help students gain practical experience by working on live projects.
                     </p>
                     <i class="fa fa-quote-left" aria-hidden="true"></i>
                   </div>
@@ -560,7 +566,7 @@ Founded on the principles of excellence and care, Medic was born from the vision
               About
             </h4>
             <p>
-              Beatae provident nobis mollitia magnam voluptatum, unde dicta facilis minima veniam corporis laudantium alias tenetur eveniet illum reprehenderit fugit a delectus officiis blanditiis ea.
+              We provide you with the best medical care experience in the world, using latest software and technological equipments.
             </p>
           </div>
         </div>
@@ -573,16 +579,13 @@ Founded on the principles of excellence and care, Medic was born from the vision
               <a class="active" href="">
                 Home
               </a>
-              <a class="" href="{% static 'about.html' %}">
+              <a class="" href="{% url 'about' %}">
                 About
               </a>
-              <a class="" href="{% static 'departments.html' %}">
-                Departments
-              </a>
-              <a class="" href="{% static 'doctors.html' %}">
+              <a class="" href="{% url 'doctors' %}">
                 Doctors
               </a>
-              <a class="" href="{% static 'contact.html' %}">
+              <a class="" href="{% url 'contact' %}">
                 Contact Us
               </a>
             </div>

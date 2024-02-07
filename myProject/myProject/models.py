@@ -14,3 +14,4 @@ class Doctor(models.Model):
     email = models.CharField(max_length=100)
     office = models.CharField(max_length=100)
     
+    

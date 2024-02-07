@@ -39,6 +39,34 @@
 
 </head>
 
+<script>
+  function showDoctorDetails(element) {
+    var doctorId = element.getAttribute('data-id'); // Not used in this example, but might be useful
+    var doctorName = element.getAttribute('data-name');
+    var doctorEmail = element.getAttribute('data-email');
+    var doctorPhone = element.getAttribute('data-phone');
+    var doctorOffice = element.getAttribute('data-office');
+    var doctorBranch = element.getAttribute('data-branch');
+    var doctorImage = element.getAttribute('data-image');
+    
+    document.getElementById('doctorDetailModal').style.display = 'block';
+    document.getElementById('doctorName').textContent = doctorName;
+    document.getElementById('doctorInfo').innerHTML = 
+    '<b>Branch:</b> ' + doctorBranch + 
+    '<br><b>Email:</b> ' + doctorEmail + 
+    '<br><b>Phone:</b> ' + doctorPhone + 
+    '<br><b>Office:</b> ' + doctorOffice;
+
+    document.getElementById('doctorImage').src = doctorImage;
+}
+
+function closeModal() {
+    document.getElementById('doctorDetailModal').style.display = 'none';
+}
+
+  </script>
+  
+
 <body class="sub_page">
 
   <div class="hero_area">
@@ -51,7 +79,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="{% url 'index' %}">
             <span>
               Medic
             </span>
@@ -68,6 +96,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'about' %}"> About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'hospitals' %}">Hospitals</a>
               </li>
               
               <li class="nav-item">
@@ -95,105 +126,45 @@
           Our Doctors
         </h2>
         <p class="col-md-10 mx-auto px-0">
-          Incilint sapiente illo quo praesentium officiis laudantium nostrum, ad adipisci cupiditate sit, quisquam aliquid. Officiis laudantium fuga ad voluptas aspernatur error fugiat quos facilis saepe quas fugit, beatae id quisquam.
+          Medic doctors are the best in the business. We have a large team of doctors who can help you with any medical condition. Our team of doctors who can help you with any medical condition.
         </p>
       </div>
       <div class="row">
-        <div class="col-sm-6 col-lg-4 mx-auto">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/d1.jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <div class="social_box">
-                <a href="">
-                  <i class="fa fa-facebook" aria-hidden="true"></i>
-                </a>
-                <a href="">
-                  <i class="fa fa-twitter" aria-hidden="true"></i>
-                </a>
-                <a href="">
-                  <i class="fa fa-youtube" aria-hidden="true"></i>
-                </a>
-                <a href="">
-                  <i class="fa fa-linkedin" aria-hidden="true"></i>
-                </a>
-              </div>
-              <h5>
-                Elina Josh
-              </h5>
-              <h6 class="">
-                Doctor
-              </h6>
-            </div>
+        <div id="doctorDetailModal" class="doctor-modal" style="display: none;">
+          <div class="doctor-modal-content">
+              <span class="close-button" onclick="closeModal()">&times;</span>
+              <img id="doctorImage" src="" alt="Doctor Image" style="width:100%;"/>
+              <h2 id="doctorName"></h2>
+              <p id="doctorInfo"></p>
           </div>
-        </div>
-        <div class="col-sm-6 col-lg-4 mx-auto">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/d2.jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <div class="social_box">
-                <a href="">
-                  <i class="fa fa-facebook" aria-hidden="true"></i>
-                </a>
-                <a href="">
-                  <i class="fa fa-twitter" aria-hidden="true"></i>
-                </a>
-                <a href="">
-                  <i class="fa fa-youtube" aria-hidden="true"></i>
-                </a>
-                <a href="">
-                  <i class="fa fa-linkedin" aria-hidden="true"></i>
-                </a>
-              </div>
-              <h5>
-                Adam View
-              </h5>
-              <h6 class="">
-                Doctor
-              </h6>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-4 mx-auto">
-          <div class="box">
-            <div class="img-box">
-              <img src="images/d3.jpg" alt="">
-            </div>
-            <div class="detail-box">
-              <div class="social_box">
-                <a href="">
-                  <i class="fa fa-facebook" aria-hidden="true"></i>
-                </a>
-                <a href="">
-                  <i class="fa fa-twitter" aria-hidden="true"></i>
-                </a>
-                <a href="">
-                  <i class="fa fa-youtube" aria-hidden="true"></i>
-                </a>
-                <a href="">
-                  <i class="fa fa-linkedin" aria-hidden="true"></i>
-                </a>
-              </div>
-              <h5>
-                Mia Mike
-              </h5>
-              <h6 class="">
-                Doctor
-              </h6>
-            </div>
-          </div>
-        </div>
       </div>
-      <div class="btn-box">
-        <a href="">
-          View All
-        </a>
-      </div>
+      
+        {% for doctor in doctors %}
+        <div class="col-sm-6 col-lg-4 mx-auto">
+          <div class="box" onclick="showDoctorDetails(this)" 
+     data-id="{{ doctor.id }}" 
+     data-name="{{ doctor.name }}" 
+     data-email="{{ doctor.email }}" 
+     data-branch="{{ doctor.branch }}"
+     data-phone="{{ doctor.phone }}" 
+     data-office="{{ doctor.office }}" 
+     data-image="{{ doctor.image.url }}">
+    <div class="img-box">
+        <img src="{{ doctor.image.url }}" alt="{{ doctor.name }}">
     </div>
-  </section>
+    <div class="detail-box">
+        <h5>{{ doctor.name }}</h5>
+        <h6>{{ doctor.specialization.all|join:", " }}</h6>
+    </div>
+</div>
+
+    </div>
+        {% empty %}
+                <p>No doctors available.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 
   <!-- end doctor section -->
 
@@ -248,7 +219,7 @@
               About
             </h4>
             <p>
-              Beatae provident nobis mollitia magnam voluptatum, unde dicta facilis minima veniam corporis laudantium alias tenetur eveniet illum reprehenderit fugit a delectus officiis blanditiis ea.
+              Our doctors are the best in the business. We have a large team of doctors who can help you with any medical condition. Our team of doctors who can help you with any medical condition.
             </p>
           </div>
         </div>
@@ -258,19 +229,16 @@
               Links
             </h4>
             <div class="footer_links">
-              <a class="" href="index.html">
+              <a class="" href="/">
                 Home
               </a>
-              <a class="" href="about.html">
+              <a class="" href="/about/">
                 About
               </a>
-              <a class="" href="departments.html">
-                Departments
-              </a>
-              <a class="active" href="doctors.html">
+              <a class="active" href="/doctors/">
                 Doctors
               </a>
-              <a class="" href="contact.html">
+              <a class="" href="/contact/">
                 Contact Us
               </a>
             </div>

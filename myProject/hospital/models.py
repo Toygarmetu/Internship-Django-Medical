@@ -8,8 +8,6 @@ class Specialization(models.Model):
     def __str__(self):
         return self.name
     
-
-    
     
     
 class MedicalCondition(models.Model):
@@ -22,34 +20,29 @@ class MedicalCondition(models.Model):
 
 class Doctor(models.Model):
     name = models.CharField(max_length=100)
-    branch = models.TextField(max_length=100)
-    specialization = models.ManyToManyField(Specialization)
-    phone = models.IntegerField(max_length=20)
-    email = models.CharField(max_length=100)
+    branch = models.TextField()
+    specialization = models.ManyToManyField('Specialization')
+    phone = models.CharField(max_length=20) 
+    email = models.EmailField() 
     office = models.CharField(max_length=100)
-    #img = models.ImageField(upload_to='pics')
+    image = models.ImageField(upload_to='images', default='default_doctor.jpg')
 
-    #img = models.ImageField(upload_to='pics')
+    def __str__(self):
+        return self.name
 
-#     def __str__(self):
-#         return self.name
-
+# And for Patient:
 class Patient(models.Model):
     name = models.CharField(max_length=100)
-    phone = models.IntegerField(max_length=20)
-    email = models.CharField(max_length=100)
+    phone = models.CharField(max_length=20)  
+    email = models.EmailField()  
     gender = models.CharField(max_length=100)
-    age = models.IntegerField(max_length=20)
+    age = models.IntegerField()  
     address = models.CharField(max_length=100)
     illness = models.CharField(max_length=100)
-    
-    #img = models.ImageField(upload_to='pics')
 
-    #img = models.ImageField(upload_to='pics')
-    
+    def __str__(self):
+        return self.name
 
-def __str__(self):
-    return self.name
 
 class Appointment(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
@@ -90,3 +83,14 @@ class Symptom(models.Model):
 def __str__(self):
     return self.name
 
+class Hospital(models.Model):
+    name = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
+    phone = models.CharField(max_length=20)
+    email = models.EmailField()
+    website = models.URLField()
+    image = models.ImageField(upload_to='images', default='default_hospital.jpg')
+    
+
+def __str__(self):
+    return self.name

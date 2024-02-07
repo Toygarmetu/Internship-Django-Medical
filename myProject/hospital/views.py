@@ -7,7 +7,7 @@ from django.contrib import messages
 
 @login_required(login_url='login')
 def index(request):
-    doctors = Doctor.objects.all()
+    doctors = Doctor.objects.order_by('?')[:3]
     return render(request, 'index.html', {'doctors': doctors, 'user': request.user})
 
 def about(request):
@@ -19,6 +19,9 @@ def doctors(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
+def hospitals(request):
+    return render(request, 'hospitals.html')
 
 @login_required
 def book_appointment(request):

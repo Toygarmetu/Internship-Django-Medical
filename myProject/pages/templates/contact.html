@@ -1,4 +1,5 @@
 {%load static%}
+
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +19,7 @@
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
-  <link rel="stylesheet" type="text/css" href="{% static 'contact.css' %}" />
+  
 
 
 
@@ -113,7 +114,7 @@
                 <input type="email" placeholder="Email" />
               </div>
               <div>
-                <input type="text" class="message-box" placeholder="Message" />
+                <input type="text" class="message-box" placeholder="Request and Complaint" />
               </div>
               <div class="btn_box">
                 <button>
@@ -191,16 +192,16 @@
               Links
             </h4>
             <div class="footer_links">
-              <a class="" href="index.html">
+              <a class="" href="{% url 'index' %}">
                 Home
               </a>
-              <a class="" href="about.html">
+              <a class="" href="{% url 'about' %}">
                 About
               </a>
               <a class="active" href="{% url 'doctors' %}">Doctors</a>
-                Doctors
+                
               </a>
-              <a class="active" href="contact.html">
+              <a class="active" href="{% url 'contact' %}">
                 Contact Us
               </a>
             </div>
