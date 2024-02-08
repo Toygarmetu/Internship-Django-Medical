@@ -3,6 +3,9 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from hospital.models import Patient
+from django.db import transaction
+from django.contrib.auth import login as auth_login
 
 
 
@@ -48,13 +51,35 @@ def register(request):
                 messages.info(request, 'Email taken')
                 return redirect('register') 
             else:
-                user = User.objects.create_user(username=username, password=password1, email=email, first_name=first_name, last_name=last_name)
-                user.save();
-                print('User created')
+                try:
+                    with transaction.atomic():
+                        user = User.objects.create_user(username=username, password=password1, email=email, first_name=first_name, last_name=last_name)
+                        user.save();
+                        print('User created')
+                        
+                        patient = Patient.objects.create(
+                        user=user,
+                        name=f"{first_name} {last_name}",
+                        email=email,
+                        gender='', 
+                        address='',
+                        phone='',
+                        illness='',
+                        age=None, 
+                    )
+                        patient.save()
+
+                        messages.success(request, 'Account created successfully')
+                        auth_login(request, user)
+                        return redirect('index')
+                except Exception as e:
+                    messages.error(request, 'Failed to create account. Error: {}'.format(e))
+                    return redirect('register')
+                                                
         else: 
             messages.info(request, 'Password not matching')
             return redirect('register') 
-        return redirect('/') 
+
     else:
         return render(request, 'register.html')
     

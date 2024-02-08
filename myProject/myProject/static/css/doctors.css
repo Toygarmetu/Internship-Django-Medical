@@ -156,8 +156,10 @@ body, html {
     background-color: #fefefe;
     margin: 10% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 100px solid #888;
     width: 80%;
+    
+    
 }
 
 .close-button {
