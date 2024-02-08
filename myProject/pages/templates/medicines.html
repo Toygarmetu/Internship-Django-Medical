@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicines</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/medicine.css' %}" /> 
+    <script src='{% static "js/main.js" %}'></script>
+    <!-- Include additional CSS files if needed -->
+</head>
+<body>
+
+<div class="container mt-5">
+    <a href="javascript:history.go(-1);" class="btn btn-primary mb-4">Home</a>
+    <h1 class="mb-4">Medicines</h1>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Manufacturer</th>
+                    <th>Expiry Date</th>
+                    <th>Dosage</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for medicine in medicines %}
+                    <tr>
+                        <td>{{ medicine.name }}</td>
+                        <td>{{ medicine.type }}</td>
+                        <td>{{ medicine.description }}</td>
+                        <td>{{ medicine.manufacturer }}</td>
+                        <td>{{ medicine.expiry_date|date:"Y-m-d" }}</td>
+                        <td>{{ medicine.dosage }}</td>
+                        <td>${{ medicine.price }}</td>
+                        <td>{{ medicine.quantity }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="8">No medicines found.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

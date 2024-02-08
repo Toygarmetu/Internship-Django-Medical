@@ -58,7 +58,7 @@
 
   <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="">
 
-  <title> Doctors </title>
+  <title> Hospitals </title>
 
 
   <!-- bootstrap core css -->
@@ -169,41 +169,33 @@ function closeModal() {
             Our hospitals are the best in the business. We have a large team of doctors who can help you with any medical condition. Our team of doctors who can help you with any medical condition.
         </p>
       </div>
-      <div class="row">
-        <div id="hospitalDetailModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <h2 id="hospitalName"></h2>
-                <img id="hospitalImage" src="" alt="Hospital Image" style="width: 100%; height: 300px;">
-                <p id="hospitalInfo"></p>
-            </div>
+        <div class="row">
       
+       
         {% for hospital in hospitals %}
-        <div class="col-sm-6 col-lg-4 mx-auto">
-          <div class="doctor_container">
-            <div class="img-box">
-              <img src="{{ hospital.image.url }}" alt="">
-            </div>
-            <div class="detail-box">
-              <h5>
-                {{ hospital.name }}
-              </h5>
-              <p>
-                {{ hospital.address }}
-              </p>
-              <p>
-                Phone: {{ hospital.phone }}
-              </p>
-              <p>
-                Email: {{ hospital.email }}
-              </p>
-              <a href="{{ hospital.website }}" class="btn btn-primary" target="_blank">Visit Website</a>
-              <button class="btn btn-primary" data-id="{{ hospital.id }}" data-name="{{ hospital.name }}" data-email="{{ hospital.email }}" data-phone="{{ hospital.phone }}" data-address="{{ hospital.address }}" data-image="{{ hospital.image.url }}" onclick="showHospitalDetails(this)">View Details</button>
+        <div class="img-box">
+            <div class="box" onclick="showHospitalDetails(this)" 
+            data-id="{{ hospital.id }}"
+            data-name="{{ hospital.name }}"
+            data-email="{{ hospital.email }}"
+            data-phone="{{ hospital.phone }}"
+            data-address="{{ hospital.address }}"
+            data-image="{{ hospital.image.url }}">
+                <div class="img-box">
+                    <img src="{{ hospital.image.url }}" alt="{{ hospital.name }}" onerror="this.onerror=null; this.src='images/hospital.jpg';">
+                </div>
+                <div class="detail-box">
+                    <h5>{{ hospital.name }}</h5>
+                    <p>{{ hospital.address }}</p>
+                    <p> {{ hospital.phone }}</p>
+                    <p> {{ hospital.email }}</p>
             </div>
 
     </div>
         {% empty %}
-                <p>No hospitals available.</p>
+        <div class="col">
+            <p>No hospitals available.</p>
+          </div>
             {% endfor %}
         </div>
     </div>
