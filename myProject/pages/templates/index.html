@@ -20,6 +20,12 @@
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
 
+  <!-- First jQuery, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
   <!--owl slider stylesheet -->
@@ -69,30 +75,39 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'doctors' %}">Doctors</a>
               </li>
-              {% if user.is_authenticated %}
+              <!-- {% if user.is_authenticated %}
               <a href="{% url 'patient_profile' user.patient.id %}" class="btn btn-primary">View My Profile</a>
-              {% endif %}
-              <!-- <li class="nav-item">
-                <a class="nav-link" href="{% static 'about.html' %}"> About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% static 'departments.html' %}">Departments</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% static 'doctors.html' %}">Doctors</a>
-              </li> -->
+              {% endif %} -->
+
               <li class="nav-item">
                 <a class="nav-link" href="contact">Contact Us</a>
               </li>
 
               {% if user.is_authenticated %}
 
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="#"><span class="user-name">{{ user.first_name }}</span></a>
               </li>
                 <li class="nav-item">
                   <a class="nav-link" href="accounts/logout">Logout</a>
-                </li>
+                </li> -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="user-name">{{ user.first_name }}</span>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      {% if user.is_authenticated %}
+                          <a class="dropdown-item" href="{% url 'patient_profile' user.patient.id %}">View My Profile</a>
+                          <a class="dropdown-item" href="accounts/logout">Logout</a>
+                      {% else %}
+                          <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                          <a class="dropdown-item" href="{% url 'signup' %}">Sign Up</a>
+                      {% endif %}
+                  </div>
+              </li>
+              
+
+
               {% else %}
               
               <li class="nav-item">
@@ -641,6 +656,11 @@ Founded on the principles of excellence and care, Medic was born from the vision
   <script src="{% static 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap' %}">
   </script>
   <!-- End Google Map -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 </body>
 

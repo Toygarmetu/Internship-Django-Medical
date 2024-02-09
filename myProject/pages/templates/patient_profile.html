@@ -1,6 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+
 <div class="patient-profile">
     <h2>Patient Profile: {{ patient.name }}</h2>
     <div class="details">

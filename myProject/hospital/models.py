@@ -21,6 +21,7 @@ class MedicalCondition(models.Model):
         return self.name
 
 class Doctor(models.Model):
+
     name = models.CharField(max_length=100)
     branch = models.TextField()
     specialization = models.ManyToManyField('Specialization')
@@ -79,9 +80,8 @@ class Medicine(models.Model):
     price = models.IntegerField()
     quantity = models.IntegerField()
     
-
-def __str__(self):
-    return self.name
+    def __str__(self):
+        return self.name
 
 class Symptom(models.Model):
     name = models.CharField(max_length=100)
@@ -91,9 +91,8 @@ class Symptom(models.Model):
     related_diseases = models.ManyToManyField('MedicalCondition')
     possible_treatment = models.CharField(max_length=100)
     
-
-def __str__(self):
-    return self.name
+    def __str__(self):
+        return self.name
 
 class Hospital(models.Model):
     name = models.CharField(max_length=100)
@@ -103,9 +102,8 @@ class Hospital(models.Model):
     website = models.URLField()
     image = models.ImageField(upload_to='images', default='default_hospital.jpg')
     
-
-def __str__(self):
-    return self.name
+    def __str__(self):
+        return self.name
 
 
 class MedicalHistory(models.Model):

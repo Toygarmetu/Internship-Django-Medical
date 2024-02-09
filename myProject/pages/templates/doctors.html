@@ -20,8 +20,9 @@
 
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
   <link href="{% static 'css/doctors.css' %}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+ 
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -58,6 +59,9 @@
     '<br><b>Office:</b> ' + doctorOffice;
 
     document.getElementById('doctorImage').src = doctorImage;
+
+   
+
 }
 
 function closeModal() {
@@ -136,6 +140,9 @@ function closeModal() {
               <img id="doctorImage" src="" alt="Doctor Image" style="width:100%;"/>
               <h2 id="doctorName"></h2>
               <p id="doctorInfo"></p>
+
+              <a href="/appointment" class="btn btn-primary">Schedule Appointment</a>
+
           </div>
       </div>
       
@@ -279,7 +286,7 @@ function closeModal() {
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
   </script>
   <!-- custom js -->
-  <script type="text/javascript" src="js/custom.js"></script>
+  <script type="text/javascript" src="assets/js/custom.js"></script>
   <!-- Google Map -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
   </script>
