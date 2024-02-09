@@ -42,6 +42,7 @@ class Patient(models.Model):
     age = models.IntegerField(null=True)  
     address = models.CharField(max_length=100)
     illness = models.CharField(max_length=100)
+    consent_to_store_history = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -105,3 +106,15 @@ class Hospital(models.Model):
 
 def __str__(self):
     return self.name
+
+
+class MedicalHistory(models.Model):
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    condition = models.ForeignKey(MedicalCondition, on_delete=models.CASCADE)
+    description = models.TextField()
+    date_diagnosed = models.DateField()
+    treatment = models.TextField()
+    outcome = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return f"Medical History for {self.patient.name}"
