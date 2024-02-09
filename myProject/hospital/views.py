@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Doctor, Patient, Appointment, Medicine, Symptom, Specialization, MedicalCondition, Hospital
+from .models import Doctor, Patient, Appointment, Medicine, Symptom, Specialization, MedicalCondition, Hospital, Symptom, MedicalCondition
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from datetime import datetime, time, timedelta
@@ -29,6 +29,16 @@ def hospitals(request):
 def medicines(request):
     medicines = Medicine.objects.all()
     return render(request, 'medicines.html', {'medicines': medicines})
+
+def symptoms(request):
+    symptoms = Symptom.objects.all()
+    return render(request, 'symptoms.html', {'symptoms': symptoms})
+
+def diseases(request):
+    diseases = MedicalCondition.objects.all()
+    return render(request, 'diseases.html', {'diseases': diseases})
+
+
 
 @login_required
 def book_appointment(request):

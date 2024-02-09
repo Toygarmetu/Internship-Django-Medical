@@ -13,7 +13,9 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('hospitals/', views.hospitals, name='hospitals'),
     path('index/', views.index, name='index'),
-    path('medicines/', views.medicines, name='medicines')
+    path('medicines/', views.medicines, name='medicines'),
+    path('symptoms/', views.symptoms, name='symptoms'),
+    path('diseases/', views.diseases, name='diseases')
 ]
 
 if settings.DEBUG:

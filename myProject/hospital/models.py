@@ -16,7 +16,6 @@ class Specialization(models.Model):
 class MedicalCondition(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
-    symptoms = models.ManyToManyField('Symptom')
     
     def __str__(self):
         return self.name
