@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from .utils import time_slot, is_slot_available
 from datetime import time, timedelta
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django import template
 
 # Create your models here.
 
@@ -21,7 +24,7 @@ class MedicalCondition(models.Model):
         return self.name
 
 class Doctor(models.Model):
-
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length=100)
     branch = models.TextField()
     specialization = models.ManyToManyField('Specialization')
@@ -116,3 +119,14 @@ class MedicalHistory(models.Model):
     
     def __str__(self):
         return f"Medical History for {self.patient.name}"
+    
+class Prescription(models.Model):
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    medicine = models.ForeignKey(Medicine, on_delete=models.CASCADE)
+    dosage = models.CharField(max_length=100)
+    instructions = models.TextField()
+    date_prescribed = models.DateField()
+    
+    def __str__(self):
+        return f"Prescription for {self.patient.name}"

@@ -1,4 +1,8 @@
 from datetime import datetime, time, timedelta
+from django.http import HttpResponseForbidden
+from django.contrib.auth.decorators import login_required
+
+
 
 
 def time_slot(start_time, end_time, interval):
@@ -18,3 +22,15 @@ def is_slot_available(doctor, date, time_str):
         return False
     
     return not doctor.appointment_set.filter(date=date, time=appointment_time).exists()
+
+
+def doctor_required(function):
+    @login_required
+    def wrap(request, *args, **kwargs):
+        if request.user.is_doctor:
+            return function(request, *args, **kwargs)
+        else:
+            return HttpResponseForbidden()
+    wrap.__doc__ = function.__doc__
+    wrap.__name__ = function.__name__
+    return wrap

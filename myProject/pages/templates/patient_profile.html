@@ -4,19 +4,47 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
 
-<div class="patient-profile">
+<div class="container mt-5">
     <h2>Patient Profile: {{ patient.name }}</h2>
-    <div class="details">
-        <p><strong>Email:</strong> {{ patient.email }}</p>
-        <p><strong>Phone:</strong> {{ patient.phone }}</p>
-        <p><strong>Address:</strong> {{ patient.address }}</p>
-        <p><strong>Age:</strong> {{ patient.age }}</p>
-        <p><strong>Gender:</strong> {{ patient.gender }}</p>
-        <p><strong>Illness:</strong> {{ patient.illness }}</p>
-    </div>
-    <div class="actions">
-        <a href="{% url 'add_medical_history' patient.id %}" class="button">Add Medical History</a>
-        
+    <form action="{% url 'update_patient_profile' patient.id %}" method="post" class="mt-4">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="patientEmail">Email:</label>
+            <input type="email" class="form-control" id="patientEmail" name="email" value="{{ patient.email }}" required>
+        </div>
+        <div class="form-group">
+            <label for="patientPhone">Phone:</label>
+            <input type="text" class="form-control" id="patientPhone" name="phone" value="{{ patient.phone }}" required>
+        </div>
+        <div class="form-group">
+            <label for="patientAddress">Address:</label>
+            <input type="text" class="form-control" id="patientAddress" name="address" value="{{ patient.address }}" required>
+        </div>
+        <div class="form-group">
+            <label for="patientAge">Age:</label>
+            <input type="number" class="form-control" id="patientAge" name="age" value="{{ patient.age }}" required>
+        </div>
+        <div class="form-group">
+            <label for="patientGender">Gender:</label>
+            <select class="form-control" id="patientGender" name="gender">
+                <option value="Male" {% if patient.gender == "Male" %}selected{% endif %}>Male</option>
+                <option value="Female" {% if patient.gender == "Female" %}selected{% endif %}>Female</option>
+                <option value="Other" {% if patient.gender == "Other" %}selected{% endif %}>Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="patientIllness">Illness (based on Symptoms):</label>
+            <select class="form-control" id="patientIllness" name="illness" required multiple>
+                {% for symptom in symptoms %}
+                    <option value="{{ symptom.name }}" {% if symptom.name in patient.illness %}selected{% endif %}>{{ symptom.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <!-- need to change part above -->
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+    <div class="actions mt-3">
+        <a href="{% url 'add_medical_history' patient.id %}" class="btn btn-secondary">Add Medical History</a>
     </div>
 </div>
 {% endblock %}

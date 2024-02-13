@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
-from .models import Doctor, Patient, Appointment, Medicine, Symptom, Specialization, MedicalCondition, Hospital, Symptom, MedicalHistory
+from .models import Doctor, Patient, Appointment, Medicine, Symptom, Specialization, MedicalCondition, Hospital, Symptom, MedicalHistory, Prescription
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from datetime import datetime, time, timedelta
 from .utils import time_slot, is_slot_available
 from .forms import MedicalHistoryForm
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from .forms import PatientProfileForm
+
 # Create your views here.
 
 @login_required(login_url='login')
@@ -42,7 +45,12 @@ def diseases(request):
 def patient_profile(request, patient_id):
     patient = get_object_or_404(Patient, pk=patient_id)
     medical_histories = MedicalHistory.objects.filter(patient=patient)
-    return render(request, 'patient_profile.html', {'patient': patient, 'medical_histories': medical_histories})
+    symptoms = Symptom.objects.all()
+    return render(request, 'patient_profile.html', {'patient': patient, 'medical_histories': medical_histories, 'symptoms': symptoms})
+
+def doctor_profile(request, doctor_id):
+    doctor = get_object_or_404(Doctor, pk=doctor_id)
+    return render(request, 'doctor_profile.html', {'doctor': doctor, 'user': request.user})
 
 
 
@@ -110,3 +118,41 @@ def add_medical_history(request, patient_id):
         form = MedicalHistoryForm()
 
     return render(request, 'add_medical_history.html', {'form': form})
+
+
+def submit_prescription(request):
+    medicines = Medicine.objects.all()
+    if request.method == "POST":
+        # Extract form data
+        patient_name = request.POST.get('patientName')
+        patient_id = request.POST.get('patientID')
+        date = request.POST.get('date')
+        medication = request.POST.get('medication')
+        dosage = request.POST.get('dosage')
+        instructions = request.POST.get('instructions')
+
+        # Process and save the prescription data
+        # This is just an example, adapt it to your models and logic
+        Prescription.objects.create(
+            patient_name=patient_name,
+            patient_id=patient_id,
+            date=date,
+            medication=medication,
+            dosage=dosage,
+            instructions=instructions
+        )
+        return redirect('doctor_profile',  {{'medicines': medicines}} , doctor_id=request.user.doctor.id) 
+        
+
+    
+@login_required
+def update_patient_profile(request, patient_id):
+    patient = get_object_or_404(Patient, pk=patient_id)
+    if request.method == "POST":
+        form = PatientProfileForm(request.POST, instance=patient)
+        if form.is_valid():
+            form.save()
+            return redirect('patient_profile', patient_id=patient.id)
+    else:
+        form = PatientProfileForm(instance=patient)
+    return render(request, 'patient_profile.html', {'form': form, 'patient': patient})
