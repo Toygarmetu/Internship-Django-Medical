@@ -122,14 +122,24 @@ def add_medical_history(request, patient_id):
 
 def submit_prescription(request):
     medicines = Medicine.objects.all()
+    patients = Patient.objects.all()
     if request.method == "POST":
         # Extract form data
         patient_name = request.POST.get('patientName')
         patient_id = request.POST.get('patientID')
+        medicine_id = request.POST.get('medication')
         date = request.POST.get('date')
         medication = request.POST.get('medication')
         dosage = request.POST.get('dosage')
         instructions = request.POST.get('instructions')
+        
+        patient = Patient.objects.get(id=patient_id)
+        medicine = Medicine.objects.get(id=medicine_id)
+        dosage = request.POST.get('dosage')
+        instructions = request.POST.get('instructions')
+        date = request.POST.get('date')
+        doctor = request.user.doctor
+
 
         # Process and save the prescription data
         # This is just an example, adapt it to your models and logic
@@ -141,7 +151,9 @@ def submit_prescription(request):
             dosage=dosage,
             instructions=instructions
         )
-        return redirect('doctor_profile',  {{'medicines': medicines}} , doctor_id=request.user.doctor.id) 
+        return redirect('doctor_profile') 
+    
+    return render(request, 'your_template_name.html', {'medicines': medicines, 'patients': patients})
         
 
     
